@@ -9623,6 +9623,12 @@ static void BeginWildEncounterQuery()
     if(IsCurseActive(EFFECT_WILD_EGG_SPECIES))
         RogueMonQuery_TransformIntoEggSpecies();
 
+    // Team Rocket Raichu is an additive candidate wherever normal Raichu survived
+    // the selected dex, evolution, legendary, and route-type filters. This deliberately
+    // bypasses its own dex membership so it also appears in National and other dexes.
+    if(RogueMiscQuery_CheckState(SPECIES_RAICHU))
+        RogueMiscQuery_EditElement(QUERY_FUNC_INCLUDE, SPECIES_RAICHU_ROCKET);
+
     // Remove random entries until we can safely calcualte weights without going over
     while(RogueWeightQuery_IsOverSafeCapacity())
     {
