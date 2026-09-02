@@ -1,0 +1,25 @@
+{
+  "Species": [
+    "SPECIES_RAICHU_ROCKET"
+  ],
+  "LevelUpMoves": [
+    { "Move": "MOVE_FAKE_OUT", "Level": 1 },
+    { "Move": "MOVE_THUNDERBOLT", "Level": 10 },
+    { "Move": "MOVE_KNOCK_OFF", "Level": 20 },
+    { "Move": "MOVE_NASTY_PLOT", "Level": 30 },
+    { "Move": "MOVE_VOLT_SWITCH", "Level": 40 },
+    { "Move": "MOVE_DARK_PULSE", "Level": 50 },
+    { "Move": "MOVE_SUCKER_PUNCH", "Level": 60 },
+    { "Move": "MOVE_PARTING_SHOT", "Level": 70 }
+  ],
+  "TutorMoves": [
+    "MOVE_THUNDERBOLT",
+    "MOVE_DARK_PULSE",
+    "MOVE_FAKE_OUT",
+    "MOVE_NASTY_PLOT",
+    "MOVE_KNOCK_OFF",
+    "MOVE_SUCKER_PUNCH",
+    "MOVE_VOLT_SWITCH",
+    "MOVE_PARTING_SHOT"
+  ]
+}

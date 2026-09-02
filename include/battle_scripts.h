@@ -164,6 +164,7 @@ extern const u8 BattleScript_SandstreamActivates[];
 extern const u8 BattleScript_ShedSkinActivates[];
 extern const u8 BattleScript_ShedSkinCharmActivates[];
 extern const u8 BattleScript_IntimidateActivates[];
+extern const u8 BattleScript_DirtyTacticsActivates[];
 extern const u8 BattleScript_DroughtActivates[];
 extern const u8 BattleScript_AlphaMonActivates[];
 extern const u8 BattleScript_TookAttack[];
