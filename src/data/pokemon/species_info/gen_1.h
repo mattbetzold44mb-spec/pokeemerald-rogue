@@ -2142,6 +2142,43 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .formChangeTable = sRaichuFormChangeTable
     },
 
+    [SPECIES_RAICHU_ROCKET] =
+    {
+        RAICHU_MISC_INFO,
+        .speciesName = _("TR Raichu"),
+        .baseHP        = 60,
+        .baseAttack    = 90,
+        .baseDefense   = 55,
+        .baseSpeed     = RAICHU_SPEED,
+        .baseSpAttack  = 90,
+        .baseSpDefense = 80,
+        .types = { TYPE_ELECTRIC, TYPE_DARK },
+        .abilities = { ABILITY_DIRTY_TACTICS, ABILITY_NONE, ABILITY_DIRTY_TACTICS },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .height = 8,
+        .weight = 300,
+        .description = POKEDEX_DESC_STRING(
+            "A Raichu trained in Team Rocket's\n"
+            "underhanded battle style. It weakens\n"
+            "its opponents before striking with\n"
+            "electric and dark attacks."),
+        .pokemonScale = 426,
+        .pokemonOffset = 13,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Raichu, 64, 64),
+        FRONT_PIC_FEMALE(Raichu, 64, 64),
+        .frontPicYOffset = 3,
+        .frontAnimFrames = sAnims_Raichu,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        BACK_PIC(Raichu, 64, 56),
+        .backPicYOffset = 6,
+        .backAnimId = BACK_ANIM_SHAKE_FLASH_YELLOW,
+        PALETTES(Raichu),
+        ICON(Raichu, 0),
+        LEARNSETS(Raichu),
+    },
+
     [SPECIES_RAICHU_MEGA_X] =
     {
         RAICHU_MISC_INFO,
