@@ -108,13 +108,19 @@ namespace PokemonDataGenerator.Pokedex
 
                 // 2.1.1
                 fullDexes.Add(GatherResourceDexData("extras_colosseum", "Colosseum + XD", 3, "Orre Colosseum.csv"));
+
+				// Project-specific species do not exist in PokéAPI. Keep them in the
+				// generator source of truth so regenerating the dex cannot discard them.
+				fullDexes.Add(GatherCustomDexData("team_rocket", "Team Rocket", 9, "RAICHU", "RAICHU_ROCKET"));
             }
 
 			Dictionary<string, List<PokedexData>> regionVariants = new Dictionary<string, List<PokedexData>>();
 
 			foreach (var dex in fullDexes)
 			{
-				string region = dex.InternalName.Split('_')[0];
+				string region = dex.InternalName.StartsWith("team_rocket", StringComparison.OrdinalIgnoreCase)
+					? "team_rocket"
+					: dex.InternalName.Split('_')[0];
 
 				if (!regionVariants.ContainsKey(region))
 					regionVariants[region] = new List<PokedexData>();
@@ -174,6 +180,19 @@ namespace PokemonDataGenerator.Pokedex
 			}
 
 			return data;
+		}
+
+		private static PokedexData GatherCustomDexData(string name, string displayName, int genLimit, params string[] species)
+		{
+			Console.WriteLine($"Generating {name} custom dex data");
+
+			return new PokedexData
+			{
+				InternalName = name,
+				DisplayName = displayName,
+				GenLimit = genLimit,
+				Mons = species.ToList(),
+			};
 		}
 
 		private static bool IsSpeciesIgnored(string species)
@@ -769,6 +788,7 @@ namespace PokemonDataGenerator.Pokedex
 			{
 				string displayName = region.Key;
 				displayName = char.ToUpper(displayName[0]).ToString() + string.Join("", displayName.Skip(1));
+				displayName = displayName.Replace("_", " ");
 
 				content.AppendLine($"");
 				content.AppendLine($"const u8 sRogueDexRegionName_{FormatKeyword(region.Key)}[] = _(\"{displayName}\");");
