@@ -113,7 +113,7 @@ namespace PokemonDataGenerator.Pokedex
 					InternalName = "extras_team_rocket",
 					DisplayName = "Team Rocket",
 					GenLimit = 9,
-					Mons = new List<string> { "SPECIES_RAICHU", "SPECIES_RAICHU_ALOLAN", "SPECIES_RAICHU_ROCKET" },
+					Mons = new List<string> { "raichu", "raichu-alolan", "raichu-rocket" },
 				});
             }
 
