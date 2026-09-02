@@ -18,6 +18,7 @@ namespace PokemonDataGenerator.Pokedex
 		private class PokedexData
 		{
 			public string InternalName;
+			public string RegionName;
 			public string DisplayName;
 			public int GenLimit;
 			public List<string> Mons;
@@ -108,13 +109,15 @@ namespace PokemonDataGenerator.Pokedex
 
                 // 2.1.1
                 fullDexes.Add(GatherResourceDexData("extras_colosseum", "Colosseum + XD", 3, "Orre Colosseum.csv"));
+
+				fullDexes.Add(GatherCustomDexData("team_rocket", "team_rocket", "Team Rocket", 1, "raichu_rocket"));
             }
 
 			Dictionary<string, List<PokedexData>> regionVariants = new Dictionary<string, List<PokedexData>>();
 
 			foreach (var dex in fullDexes)
 			{
-				string region = dex.InternalName.Split('_')[0];
+				string region = dex.RegionName;
 
 				if (!regionVariants.ContainsKey(region))
 					regionVariants[region] = new List<PokedexData>();
@@ -164,6 +167,7 @@ namespace PokemonDataGenerator.Pokedex
 
 			PokedexData data = new PokedexData();
 			data.InternalName = name;
+			data.RegionName = name.Split('_')[0];
 			data.DisplayName = displayName;
 			data.GenLimit = genLimit;
 			data.Mons = new List<string>();
@@ -172,6 +176,20 @@ namespace PokemonDataGenerator.Pokedex
 			{
 				AppendDexMons(dexId, data);
 			}
+
+			return data;
+		}
+
+		private static PokedexData GatherCustomDexData(string name, string regionName, string displayName, int genLimit, params string[] species)
+		{
+			Console.WriteLine($"Generating {name} dex data");
+
+			PokedexData data = new PokedexData();
+			data.InternalName = name;
+			data.RegionName = regionName;
+			data.DisplayName = displayName;
+			data.GenLimit = genLimit;
+			data.Mons = new List<string>(species);
 
 			return data;
 		}
@@ -297,6 +315,7 @@ namespace PokemonDataGenerator.Pokedex
 
 			PokedexData data = new PokedexData();
 			data.InternalName = name;
+			data.RegionName = name.Split('_')[0];
 			data.DisplayName = displayName;
 			data.GenLimit = genLimit;
 			data.Mons = new List<string>();
@@ -767,8 +786,8 @@ namespace PokemonDataGenerator.Pokedex
 			// Add all regional dex variants
 			foreach (var region in regionData)
 			{
-				string displayName = region.Key;
-				displayName = char.ToUpper(displayName[0]).ToString() + string.Join("", displayName.Skip(1));
+				string displayName = string.Join(" ", region.Key.Split('_')
+					.Select(word => char.ToUpper(word[0]).ToString() + string.Join("", word.Skip(1))));
 
 				content.AppendLine($"");
 				content.AppendLine($"const u8 sRogueDexRegionName_{FormatKeyword(region.Key)}[] = _(\"{displayName}\");");

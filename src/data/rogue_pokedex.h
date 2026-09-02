@@ -13834,6 +13834,13 @@ const u16 sRogueDexVariant_EXTRAS_COLOSSEUM[] =
 	SPECIES_DRAGONITE,
 };
 
+const u8 sRogueDexVariantName_TEAM_ROCKET[] = _("Team Rocket");
+
+const u16 sRogueDexVariant_TEAM_ROCKET[] = 
+{
+	SPECIES_RAICHU_ROCKET,
+};
+
 const u8 sRogueDexRegionName_ROGUE[] = _("Rogue");
 
 const u16 sRogueDexRegion_ROGUE[] = 
@@ -13947,6 +13954,13 @@ const u16 sRogueDexRegion_NATIONAL[] =
 	POKEDEX_VARIANT_NATIONAL_GEN7,
 	POKEDEX_VARIANT_NATIONAL_GEN8,
 	POKEDEX_VARIANT_NATIONAL_GEN9,
+};
+
+const u8 sRogueDexRegionName_TEAM_ROCKET[] = _("Team Rocket");
+
+const u16 sRogueDexRegion_TEAM_ROCKET[] = 
+{
+	POKEDEX_VARIANT_TEAM_ROCKET,
 };
 
 const struct RoguePokedexVariant gPokedexVariants[POKEDEX_VARIANT_COUNT] = 
@@ -14210,6 +14224,13 @@ const struct RoguePokedexVariant gPokedexVariants[POKEDEX_VARIANT_COUNT] =
 		.speciesCount = ARRAY_COUNT(sRogueDexVariant_EXTRAS_COLOSSEUM),
 		.genLimit = 3,
 	},
+	[POKEDEX_VARIANT_TEAM_ROCKET] = 
+	{
+		.displayName = sRogueDexVariantName_TEAM_ROCKET,
+		.speciesList = sRogueDexVariant_TEAM_ROCKET,
+		.speciesCount = ARRAY_COUNT(sRogueDexVariant_TEAM_ROCKET),
+		.genLimit = 1,
+	},
 };
 
 const struct RoguePokedexRegion gPokedexRegions[POKEDEX_REGION_COUNT] = 
@@ -14291,5 +14312,11 @@ const struct RoguePokedexRegion gPokedexRegions[POKEDEX_REGION_COUNT] =
 		.displayName = sRogueDexRegionName_NATIONAL,
 		.variantList = sRogueDexRegion_NATIONAL,
 		.variantCount = ARRAY_COUNT(sRogueDexRegion_NATIONAL),
+	},
+	[POKEDEX_REGION_TEAM_ROCKET] = 
+	{
+		.displayName = sRogueDexRegionName_TEAM_ROCKET,
+		.variantList = sRogueDexRegion_TEAM_ROCKET,
+		.variantCount = ARRAY_COUNT(sRogueDexRegion_TEAM_ROCKET),
 	},
 };
