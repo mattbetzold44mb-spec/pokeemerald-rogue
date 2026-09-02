@@ -203,6 +203,8 @@ u8 SpeciesToGen(u16 species)
         return 1;
     if(species >= SPECIES_CLEFABLE_MEGA && species <= SPECIES_GLIMMORA_MEGA)
         return 1;
+    if(species == SPECIES_RAICHU_ROCKET)
+        return 1;
     if(species >= SPECIES_VENUSAUR_GIGANTAMAX && species <= SPECIES_URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX)
         return 1;
     
