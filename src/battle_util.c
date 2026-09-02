@@ -4847,6 +4847,15 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 effect++;
             }
             break;
+        case ABILITY_DIRTY_TACTICS:
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattlerAttacker = battler;
+                BattleScriptPushCursorAndCallback(BattleScript_DirtyTacticsActivates);
+                effect++;
+            }
+            break;
         case ABILITY_INTIMIDATE:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {

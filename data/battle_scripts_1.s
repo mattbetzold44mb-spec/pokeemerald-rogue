@@ -9011,6 +9011,28 @@ BattleScript_TryAdrenalineOrb:
 BattleScript_TryAdrenalineOrbRet:
 	return
 
+BattleScript_DirtyTacticsActivates::
+	showabilitypopup BS_ATTACKER
+	copybyte sSAVED_BATTLER, gBattlerTarget
+	pause B_WAIT_TIME_LONG
+	destroyabilitypopup
+	setbyte gBattlerTarget, 0
+BattleScript_DirtyTacticsLoop:
+	jumpifbyteequal gBattlerTarget, gBattlerAttacker, BattleScript_DirtyTacticsLoopIncrement
+	jumpiftargetally BattleScript_DirtyTacticsLoopIncrement
+	jumpifabsent BS_TARGET, BattleScript_DirtyTacticsLoopIncrement
+	jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE, BattleScript_DirtyTacticsLoopIncrement
+	modifybattlerstatstage BS_TARGET, STAT_DEF, DECREASE, 1, BattleScript_DirtyTacticsSpDef, ANIM_ON
+BattleScript_DirtyTacticsSpDef:
+	modifybattlerstatstage BS_TARGET, STAT_SPDEF, DECREASE, 1, BattleScript_DirtyTacticsLoopIncrement, ANIM_ON
+BattleScript_DirtyTacticsLoopIncrement:
+	addbyte gBattlerTarget, 1
+	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_DirtyTacticsLoop
+	copybyte sBATTLER, gBattlerAttacker
+	copybyte gBattlerTarget, sSAVED_BATTLER
+	pause B_WAIT_TIME_MED
+	end3
+
 BattleScript_IntimidateActivates::
 	showabilitypopup BS_ATTACKER
 	copybyte sSAVED_BATTLER, gBattlerTarget
