@@ -9045,6 +9045,37 @@ BattleScript_IntimidateEnd:
 	pause B_WAIT_TIME_MED
 	end3
 
+BattleScript_DirtyTacticsActivates::
+	showabilitypopup BS_ATTACKER
+	copybyte sSAVED_BATTLER, gBattlerTarget
+	pause B_WAIT_TIME_LONG
+	destroyabilitypopup
+	setbyte gBattlerTarget, 0
+BattleScript_DirtyTacticsLoop:
+	jumpifbyteequal gBattlerTarget, gBattlerAttacker, BattleScript_DirtyTacticsLoopIncrement
+	jumpiftargetally BattleScript_DirtyTacticsLoopIncrement
+	jumpifabsent BS_TARGET, BattleScript_DirtyTacticsLoopIncrement
+	jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE, BattleScript_DirtyTacticsLoopIncrement
+	setstatchanger STAT_DEF, 1, TRUE
+	statbuffchange STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_DirtyTacticsSpDef
+	setgraphicalstatchangevalues
+	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printfromtable gStatDownStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_DirtyTacticsSpDef:
+	setstatchanger STAT_SPDEF, 1, TRUE
+	statbuffchange STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_DirtyTacticsLoopIncrement
+	setgraphicalstatchangevalues
+	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printfromtable gStatDownStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_DirtyTacticsLoopIncrement:
+	addbyte gBattlerTarget, 1
+	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_DirtyTacticsLoop
+	copybyte gBattlerTarget, sSAVED_BATTLER
+	pause B_WAIT_TIME_MED
+	end3
+
 BattleScript_IntimidateContrary:
 	call BattleScript_AbilityPopUpTarget
 	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_INCREASE, BattleScript_IntimidateContrary_WontIncrease

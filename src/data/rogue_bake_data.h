@@ -4,6 +4,13 @@
 
 const struct RogueSpeciesBakedData gRogueBake_SpeciesData[NUM_SPECIES] =
 {
+	[SPECIES_RAICHU_ROCKET] =
+	{
+		.eggSpecies = SPECIES_RAICHU_ROCKET,
+		.evolutionCount = 0,
+		.evolutionChainTypeFlags = MON_TYPE_VAL_TO_FLAGS(TYPE_ELECTRIC) | MON_TYPE_VAL_TO_FLAGS(TYPE_DARK),
+		.evolutionChainTypeFlags_Revised = MON_TYPE_VAL_TO_FLAGS(TYPE_ELECTRIC) | MON_TYPE_VAL_TO_FLAGS(TYPE_DARK),
+	},
 	[0] =
 	{
 		.eggSpecies = 0,

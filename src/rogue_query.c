@@ -1102,6 +1102,9 @@ static bool8 Query_IsSpeciesEnabledInternal(u16 species, bool32 forceDexCheck)
         // Include specific forms in these queries
         else if(species > FORMS_START)
         {
+            if(species == SPECIES_RAICHU_ROCKET)
+                return Query_IsSpeciesEnabledInDexInternal(species, forceDexCheck);
+
             // Regional forms
             if(species >= SPECIES_RATTATA_ALOLAN && species <= SPECIES_DECIDUEYE_HISUIAN)
                 return Query_IsSpeciesEnabledInDexInternal(species, forceDexCheck);
