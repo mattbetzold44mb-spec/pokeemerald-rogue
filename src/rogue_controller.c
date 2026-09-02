@@ -9486,6 +9486,10 @@ static bool8 IsRareWeightedSpecies(u16 species)
 
 static u8 RandomiseWildEncounters_CalculateWeight(u16 index, u16 species, void* data)
 {
+    // Rocket forms are additional rolls with exactly the same odds as their base form.
+    if(species == SPECIES_RAICHU_ROCKET)
+        species = SPECIES_RAICHU;
+
 #ifdef ROGUE_EXPANSION
     switch (species)
     {
@@ -9617,6 +9621,13 @@ static void BeginWildEncounterQuery()
 
     // Now we've evolved we're only caring about mons of this type
     RogueMonQuery_IsOfType(QUERY_FUNC_INCLUDE, typeFlags);
+
+    // Offer TR Raichu as an independent encounter everywhere Raichu survived the
+    // route/evolution filters. This does not consume or divide Raichu's own roll.
+    RogueMiscQuery_EditElement(
+        RogueMiscQuery_CheckState(SPECIES_RAICHU) ? QUERY_FUNC_INCLUDE : QUERY_FUNC_EXCLUDE,
+        SPECIES_RAICHU_ROCKET
+    );
 
     // Now transform back into egg species, so the spawning should still be deteministic 
     // (although the type hints could be invalid)
