@@ -309,6 +309,7 @@ static const u8 sFireManeDescription[] = _("Ups Fire-type moves.");
 
 static const u8 sForecastPriorityDescription[] = _("Weather moves go first.");
 static const u8 sDragonFlyDescription[] = _("Dragon moves are Bug +STAB.");
+static const u8 sDirtyTacticsDescription[] = _("Lowers foes' Def and Sp. Def.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -629,7 +630,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_EELEVATE] = _("Eelevate"),
     [ABILITY_MEGA_SOL] = _("Mega Sol"),
     [ABILITY_FIRE_MANE] = _("Fire Mane"),
-    [ABILITY_317] = _("-------"),
+    [ABILITY_DIRTY_TACTICS] = _("Dirty Tactics"),
     [ABILITY_SPICY_SPRAY] = _("Spicy Spray"),
     
     [ABILITY_FORECAST_PRIORITY] = _("Instant Forecast"),
@@ -954,7 +955,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_EELEVATE] = _("Eelevate"),
     [ABILITY_MEGA_SOL] = _("Mega Sol"),
     [ABILITY_FIRE_MANE] = _("Fire Mane"),
-    [ABILITY_317] = _("-------"),
+    [ABILITY_DIRTY_TACTICS] = _("DirtyTactics"),
     [ABILITY_SPICY_SPRAY] = _("Spicy Spray"),
     
     [ABILITY_FORECAST_PRIORITY] = _("Instant Forecast"),
@@ -1280,7 +1281,7 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_EELEVATE] = sEelevateDescription,
     [ABILITY_MEGA_SOL] = sMegaSolDescription,
     [ABILITY_FIRE_MANE] = sFireManeDescription,
-    [ABILITY_317] = sNoneDescription,
+    [ABILITY_DIRTY_TACTICS] = sDirtyTacticsDescription,
     [ABILITY_SPICY_SPRAY] = sSpicySprayDescription,
 
     [ABILITY_FORECAST_PRIORITY] = sForecastPriorityDescription,

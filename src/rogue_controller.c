@@ -9487,6 +9487,12 @@ static bool8 IsRareWeightedSpecies(u16 species)
 static u8 RandomiseWildEncounters_CalculateWeight(u16 index, u16 species, void* data)
 {
 #ifdef ROGUE_EXPANSION
+    // TR Raichu is an additive Raichu encounter and must always use Raichu's
+    // weighting, even if species-specific weighting is added in the future.
+    if(species == SPECIES_RAICHU_ROCKET)
+        species = SPECIES_RAICHU;
+#endif
+#ifdef ROGUE_EXPANSION
     switch (species)
     {
     case SPECIES_DEERLING:
@@ -9617,6 +9623,12 @@ static void BeginWildEncounterQuery()
 
     // Now we've evolved we're only caring about mons of this type
     RogueMonQuery_IsOfType(QUERY_FUNC_INCLUDE, typeFlags);
+
+#ifdef ROGUE_EXPANSION
+    // Preserve the filtered Raichu encounter and add its Team Rocket variant.
+    if(RogueMiscQuery_CheckState(SPECIES_RAICHU))
+        RogueMiscQuery_EditElement(QUERY_FUNC_INCLUDE, SPECIES_RAICHU_ROCKET);
+#endif
 
     // Now transform back into egg species, so the spawning should still be deteministic 
     // (although the type hints could be invalid)
